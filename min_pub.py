@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSPresetProfiles
+from rclpy.qos import qos_profile_sensor_data
 from std_msgs.msg import String
 
 
@@ -9,8 +9,7 @@ class MinimalPublisher(Node):
     def __init__(self):
         super().__init__('minimal_publisher')
         # self.publisher_ = self.create_publisher(String, 'topic', 10, qos_profile=qos.QoSPresetProfiles.SENSOR_DATA.value)
-        print(QoSPresetProfiles.SENSOR_DATA.value)
-        self.publisher_ = self.create_publisher(String, 'topic', qos_profile=QoSPresetProfiles.SENSOR_DATA.value)
+        self.publisher_ = self.create_publisher(String, 'topic', qos_profile=qos_profile_sensor_data)
         timer_period = 0.5  # seconds
         # self.times_dict = dict()
         self.timer = self.create_timer(timer_period, self.timer_callback)
